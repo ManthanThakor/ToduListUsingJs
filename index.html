@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Include Font Awesome for the search icon (optional) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="todo-app">
+        <div class="title-section">
+          <h1>To-do List</h1>
+          <img src="images/logo/logo.png" alt="Todo Logo" id="logo-img" />
+        </div>
+
+        <div class="inputs-section">
+          <input type="text" id="input-add-task" placeholder="Add Your Task" />
+          <button class="btn-todo">Add</button>
+          <i class="fas fa-search" id="search-icon"></i>
+          <!-- Search Icon -->
+        </div>
+        <div class="error-message-sec">
+          <p class="error-message"></p>
+        </div>
+        <div class="task-sec">
+          <ul class="task-list"></ul>
+          <p id="task-message" style="display: none"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Search -->
+    <div id="search-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Search Tasks</h2>
+        <input type="text" id="search-input" placeholder="Search..." />
+        <button id="search-btn">Search</button>
+        <ul id="search-results"></ul>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
