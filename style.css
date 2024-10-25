@@ -105,6 +105,7 @@ h1 {
   padding: 20px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
+  animation: fadeIn 1.2s ease-in-out;
 }
 
 .task-list li {
@@ -121,6 +122,8 @@ h1 {
 
 .task-list li:hover {
   transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .task-list .done-btn,
@@ -133,18 +136,22 @@ h1 {
   padding: 5px 10px;
   transition: transform 0.3s;
   font-size: 1rem;
+  position: relative;
 }
 
 .task-list .done-btn:hover {
   color: #4caf50;
+  box-shadow: 0 0 8px #4caf50;
 }
 
 .task-list .remove-btn:hover {
   color: #e53935;
+  box-shadow: 0 0 8px #e53935;
 }
 
 .task-list .edit-btn:hover {
   color: #ffca28;
+  box-shadow: 0 0 8px #ffca28;
 }
 
 /* Modal styles */
