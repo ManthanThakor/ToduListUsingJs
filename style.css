@@ -186,16 +186,35 @@ h1 {
   background-color: #121212;
   color: #fff;
   margin: 15% auto;
-  padding: 20px;
+  padding: 25px;
   border-radius: 8px;
   width: 70%;
   box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
 }
+.modal-content h2 {
+  margin-bottom: 20px;
+}
+#search-input {
+  padding: 10px 15px;
+  font-size: 18px;
+}
 
+#search-btn {
+  font-size: 18px;
+  background-color: #10490b;
+  color: #00ff0d;
+  padding: 10px 15px;
+  transition: all 0.3s ease-in-out;
+}
+#search-btn:hover {
+  cursor: pointer;
+  background-color: #13740a;
+  color: #ffffff;
+}
 .close {
   color: #aaa;
   float: right;
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: bold;
 }
 
