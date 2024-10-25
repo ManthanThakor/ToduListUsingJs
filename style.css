@@ -126,32 +126,38 @@ h1 {
   background: rgba(255, 255, 255, 0.25);
 }
 
-.task-list .done-btn,
-.task-list .remove-btn,
-.task-list .edit-btn {
-  background: transparent;
+.button-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Add space between buttons */
+}
+
+/* Styling for buttons */
+.button-container button {
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
   color: #fff;
   border: none;
-  cursor: pointer;
-  padding: 5px 10px;
-  transition: transform 0.3s;
-  font-size: 1rem;
-  position: relative;
+  border-radius: 5px; /* Rounded corners */
+  padding: 8px 12px; /* Button padding */
+  transition: background 0.3s, transform 0.2s; /* Smooth transitions */
+  cursor: pointer; /* Pointer cursor */
 }
 
-.task-list .done-btn:hover {
+.button-container button:hover {
+  transform: translateY(-2px); /* Slightly raise button on hover */
+}
+
+/* Specific hover effects for each button type */
+.done-btn:hover {
   color: #4caf50;
-  box-shadow: 0 0 8px #4caf50;
 }
 
-.task-list .remove-btn:hover {
+.remove-btn:hover {
   color: #e53935;
-  box-shadow: 0 0 8px #e53935;
 }
 
-.task-list .edit-btn:hover {
+.edit-btn:hover {
   color: #ffca28;
-  box-shadow: 0 0 8px #ffca28;
 }
 
 /* Modal styles */
@@ -226,4 +232,10 @@ h1 {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.task-list li span {
+  display: inline-block;
+  width: 70%;
+  word-wrap: break-word;
 }

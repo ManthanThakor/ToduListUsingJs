@@ -4,31 +4,35 @@ const taskList = document.querySelector(".task-list");
 const errorMessage = document.querySelector(".error-message");
 const taskMessage = document.getElementById("task-message");
 
-// Function to save tasks to Local Storage
+// Function to save tasks to local storage
 const saveTasksToLocalStorage = () => {
-  const tasks = Array.from(taskList.children).map((task) => ({
-    text: task.querySelector("span").textContent,
-    isDone: task.querySelector("span").classList.contains("done"),
-  }));
+  const tasks = [];
+  document.querySelectorAll(".task-list li").forEach((li) => {
+    const taskText = li.querySelector("span").textContent;
+    const isDone = li.querySelector("span").classList.contains("done");
+    tasks.push({ text: taskText, done: isDone });
+  });
   localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
-// Function to load tasks from Local Storage
+// Function to load tasks from local storage
 const loadTasksFromLocalStorage = () => {
   const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-  tasks.forEach(({ text, isDone }) => {
-    addTaskToList(text, isDone);
+  tasks.forEach((task) => {
+    addTaskToList(task.text, task.done);
   });
 };
 
-// Function to update task list message
+// Function to update the task message
 const updateTaskListMessage = () => {
-  taskMessage.textContent =
-    taskList.children.length === 0 ? "No tasks available" : "";
-  taskMessage.style.display = taskList.children.length === 0 ? "block" : "none";
+  const totalTasks = taskList.children.length;
+  taskMessage.style.display = totalTasks > 0 ? "block" : "none";
+  taskMessage.textContent = `You have ${totalTasks} task${
+    totalTasks === 1 ? "" : "s"
+  }.`;
 };
 
-// Function to add a task to the list
+// Function to add task to the list
 const addTaskToList = (taskText, isDone = false) => {
   const listItem = document.createElement("li");
   const taskSpan = document.createElement("span");
@@ -39,6 +43,10 @@ const addTaskToList = (taskText, isDone = false) => {
   }
 
   listItem.appendChild(taskSpan);
+
+  // Create a div to hold the buttons
+  const buttonContainer = document.createElement("div");
+  buttonContainer.classList.add("button-container");
 
   // Create Done/Undo button with icon
   const doneBtn = document.createElement("button");
@@ -54,7 +62,7 @@ const addTaskToList = (taskText, isDone = false) => {
       : '<i class="fa-solid fa-circle-check"></i>';
     saveTasksToLocalStorage();
   });
-  listItem.appendChild(doneBtn);
+  buttonContainer.appendChild(doneBtn);
 
   // Create Remove button with icon
   const removeBtn = document.createElement("button");
@@ -65,7 +73,7 @@ const addTaskToList = (taskText, isDone = false) => {
     updateTaskListMessage();
     saveTasksToLocalStorage();
   });
-  listItem.appendChild(removeBtn);
+  buttonContainer.appendChild(removeBtn);
 
   // Create Edit button with icon
   const editBtn = document.createElement("button");
@@ -77,7 +85,10 @@ const addTaskToList = (taskText, isDone = false) => {
     updateTaskListMessage();
     saveTasksToLocalStorage();
   });
-  listItem.appendChild(editBtn);
+  buttonContainer.appendChild(editBtn);
+
+  // Append button container to the list item
+  listItem.appendChild(buttonContainer);
 
   // Set flex properties
   listItem.style.display = "flex";
@@ -88,30 +99,21 @@ const addTaskToList = (taskText, isDone = false) => {
   updateTaskListMessage();
 };
 
-// Function to add a task when button is clicked
-const addTask = () => {
+// Event listener for adding a task
+btnAddTask.addEventListener("click", () => {
   const taskText = inputAddTask.value.trim();
-
-  if (taskText) {
-    addTaskToList(taskText);
-    inputAddTask.value = "";
-    errorMessage.textContent = "";
-    saveTasksToLocalStorage();
-  } else {
-    errorMessage.textContent = "Please Enter a Task";
+  if (taskText === "") {
+    errorMessage.textContent = "Please enter a task.";
+    return;
   }
-};
-
-// Event listeners
-btnAddTask.addEventListener("click", addTask);
-inputAddTask.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") {
-    addTask();
-  }
+  errorMessage.textContent = "";
+  addTaskToList(taskText);
+  inputAddTask.value = ""; // Clear input after adding
+  saveTasksToLocalStorage();
 });
 
-// Load tasks from Local Storage on page load
-loadTasksFromLocalStorage();
+// Load tasks from local storage on page load
+document.addEventListener("DOMContentLoaded", loadTasksFromLocalStorage);
 
 //--------------------------
 // Modal Box and Search Functionality
