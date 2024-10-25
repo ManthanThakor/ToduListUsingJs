@@ -5,17 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To-Do List</title>
     <link rel="stylesheet" href="style.css" />
-    <!-- Include Font Awesome for the search icon (optional) -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
+    <link rel="icon" type="image/x-icon" href="images/logo/logo.png" />
+
+    <script
+      src="https://kit.fontawesome.com/cb104e752f.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <div class="container">
       <div class="todo-app">
         <div class="title-section">
-          <h1>To-do List</h1>
+          <h1>To-Do List</h1>
           <img src="images/logo/logo.png" alt="Todo Logo" id="logo-img" />
         </div>
 
@@ -23,7 +28,6 @@
           <input type="text" id="input-add-task" placeholder="Add Your Task" />
           <button class="btn-todo">Add</button>
           <i class="fas fa-search" id="search-icon"></i>
-          <!-- Search Icon -->
         </div>
         <div class="error-message-sec">
           <p class="error-message"></p>
@@ -35,7 +39,6 @@
       </div>
     </div>
 
-    <!-- Modal for Search -->
     <div id="search-modal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
